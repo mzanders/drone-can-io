@@ -89,6 +89,10 @@ void stm32_boardinitialize(void)
   stm32_spidev_initialize();
 #endif
 
+#if defined(CONFIG_STM32_TIMER2) || defined(CONFIG_STM32_TIMER3)
+  stm32_timerdev_initialize();
+#endif
+
   /* Initialize USB is
    * 1) USBDEV is selected,
    * 2) the USB controller is not disabled, and

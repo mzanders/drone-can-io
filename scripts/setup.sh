@@ -45,6 +45,7 @@ CMAKE_ARGS=(
     -B "${BUILD_DIR}"
     -DBOARD_CONFIG="${BOARD_CONFIG}"
     -DNUTTX_APPS_DIR="${APPS_DIR}"
+    -G "Ninja"
 )
 
 echo "Project root : ${PROJECT_ROOT}"

@@ -88,6 +88,11 @@ int stm32_bringup(void)
 {
   int ret = OK;
 
+#ifdef CONFIG_STM32_PWM
+  /* Initialize PWM and register the PWM driver. */
+  stm32_pwm_setup();
+#endif
+
 #ifdef CONFIG_STM32_CAN_CHARDRIVER
   /* Initialize CAN and register the CAN driver. */
 

@@ -184,7 +184,7 @@
 #define GPIO_ADC12_IN14      GPIO_ADC12_IN14_0 /* PC4 */
 #define GPIO_ADC12_IN15      GPIO_ADC12_IN15_0 /* PC5 */
 
-/* TIM1 */
+/* TIMERS */
 
 #define GPIO_TIM1_ETR        GPIO_TIM1_ETR_0                                        /* PA12 */
 #define GPIO_TIM1_CH1IN      GPIO_TIM1_CH1IN_0                                      /* PA8 */
@@ -199,6 +199,11 @@
 #define GPIO_TIM1_CH1NOUT    GPIO_ADJUST_MODE(GPIO_TIM1_CH1NOUT_0, GPIO_MODE_50MHz) /* PA7 */
 #define GPIO_TIM1_CH2NOUT    GPIO_ADJUST_MODE(GPIO_TIM1_CH2NOUT_0, GPIO_MODE_50MHz) /* PB0 */
 #define GPIO_TIM1_CH3NOUT    GPIO_ADJUST_MODE(GPIO_TIM1_CH3NOUT_0, GPIO_MODE_50MHz) /* PB1 */
+
+/* TIM2 */
+
+#define GPIO_TIM2_CH1OUT     GPIO_TIM2_CH1OUT_0   /* PA0 */
+#define GPIO_TIM2_CH2OUT     GPIO_TIM2_CH2OUT_0   /* PA1 */
 
 /* TIM3 */
 
