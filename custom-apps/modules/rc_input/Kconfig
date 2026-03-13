@@ -1,4 +1,4 @@
-config MODULES_RC_INPUT
+config RC_INPUT
 	bool "RC input abstraction layer"
 	default n
 	depends on SERIAL
@@ -7,31 +7,31 @@ config MODULES_RC_INPUT
 		Decodes RC frames and publishes normalized channel data
 		(0..4095, DroneCAN convention) to an internally managed struct.
 
-if MODULES_RC_INPUT
+if RC_INPUT
 
-config MODULES_RC_INPUT_BACKEND_SBUS
+config RC_INPUT_BACKEND_SBUS
 	bool "SBUS backend"
 	default y
 	---help---
 		100kbps 8E2 UART. Requires external signal inverter on STM32F1.
 
-config MODULES_RC_INPUT_BACKEND_CRSF
+config RC_INPUT_BACKEND_CRSF
 	bool "CRSF (Crossfire) backend"
 	default n
 	---help---
 		420kbps half-duplex UART. Not yet implemented.
 
-config MODULES_RC_INPUT_BACKEND_DRONECAN
+config RC_INPUT_BACKEND_DRONECAN
 	bool "DroneCAN backend"
 	default n
 	---help---
 		dronecan.sensors.rc.RCInput (ID 1140). Not yet implemented.
 
-config MODULES_RC_INPUT_THREAD_PRIORITY
+config RC_INPUT_THREAD_PRIORITY
 	int "Decoder thread priority"
 	default 110
 
-config MODULES_RC_INPUT_THREAD_STACK
+config RC_INPUT_THREAD_STACK
 	int "Decoder thread stack size"
 	default 1536
 

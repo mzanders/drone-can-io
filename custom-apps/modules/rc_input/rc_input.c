@@ -16,8 +16,17 @@
  * Pre-processor Definitions
  ****************************************************************************/
 
-#define RC_INPUT_THREAD_STACK     1536
-#define RC_INPUT_THREAD_PRIORITY  110
+#ifdef CONFIG_RC_INPUT_THREAD_STACK
+#  define RC_INPUT_THREAD_STACK CONFIG_RC_INPUT_THREAD_STACK
+#else
+#  define RC_INPUT_THREAD_STACK 1536
+#endif
+
+#ifdef CONFIG_RC_INPUT_THREAD_PRIORITY
+#  define RC_INPUT_THREAD_PRIORITY CONFIG_RC_INPUT_THREAD_PRIORITY
+#else
+#  define RC_INPUT_THREAD_PRIORITY 110
+#endif
 
 /****************************************************************************
  * Private Types

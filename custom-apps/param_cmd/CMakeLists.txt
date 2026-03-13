@@ -2,17 +2,12 @@
 # src/modules/rc_input/example/CMakeLists.txt
 ############################################################################
 
-if(CONFIG_RC_INPUT_EXAMPLE)
+if(CONFIG_PARAM_CMD)
 nuttx_add_application(
-  NAME
-  rcinput
-  STACKSIZE
-  ${CONFIG_DEFAULT_TASK_STACKSIZE}
-  MODULE
-  ${CONFIG_RC_INPUT_EXAMPLE}
-  SRCS
-  rcinput_main.c
-  DEPENDS
-  rc_input
+  NAME param
+  STACKSIZE ${CONFIG_DEFAULT_TASK_STACKSIZE}
+  MODULE ${CONFIG_PARAM_CMD}
+  SRCS param_cmd.c
+  DEPENDS param_store
 )
 endif()

@@ -66,7 +66,13 @@
  *
  ****************************************************************************/
 
+void app_param_init(void);
+
+void __attribute__((weak)) app_param_init(void)
+{ }
+
 int board_app_initialize(uintptr_t arg)
 {
+  app_param_init();
   return stm32_bringup();
 }

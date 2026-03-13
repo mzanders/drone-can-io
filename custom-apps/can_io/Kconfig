@@ -1,0 +1,7 @@
+config CAN_IO_APP
+	bool "CAN IO application"
+	default y
+	depends on RC_INPUT
+	depends on PARAM_STORE
+	---help---
+		Main application

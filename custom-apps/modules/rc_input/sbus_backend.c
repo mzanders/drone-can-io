@@ -78,7 +78,6 @@ static void *sbus_alloc(void)
 static int sbus_open(void *priv_void, const char *path)
 {
   struct sbus_priv_s *priv = (struct sbus_priv_s *)priv_void;
-  struct termios tio;
 
   priv->fd = open(path, O_RDONLY | O_NONBLOCK);
   if (priv->fd < 0)
@@ -86,20 +85,6 @@ static int sbus_open(void *priv_void, const char *path)
       syslog(LOG_ERR, "sbus: open %s failed: %d\n", path, errno);
       return -errno;
     }
-
-//  if (tcgetattr(priv->fd, &tio) != 0)
-//    {
-//      close(priv->fd);
-//      priv->fd = -1;
-//      return -errno;
-//    }
-//
-//  cfmakeraw(&tio);
-//  tio.c_cflag &= ~CSIZE;
-//  tio.c_cflag |= CS8 | PARENB | CSTOPB | CREAD | CLOCAL;
-//  tio.c_cflag &= ~PARODD;  /* even parity */
-//  tcsetattr(priv->fd, TCSANOW, &tio);
-//
 
   return 0;
 }

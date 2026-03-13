@@ -1,7 +1,7 @@
 config RC_INPUT_EXAMPLE
 	bool "RC input example application"
 	default n
-	depends on MODULES_RC_INPUT
+	depends on RC_INPUT
 	---help---
 		Reads SBUS RC input and prints all channel values once per second.
 		Useful for hardware bringup and verifying the rc_input pipeline.

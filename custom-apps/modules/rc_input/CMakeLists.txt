@@ -2,19 +2,19 @@
 # src/modules/rc_input/CMakeLists.txt
 ############################################################################
 
-if(CONFIG_MODULES_RC_INPUT)
+if(CONFIG_RC_INPUT)
 
 set(SRCS rc_input.c)
 
-if(CONFIG_MODULES_RC_INPUT_BACKEND_SBUS)
+if(CONFIG_RC_INPUT_BACKEND_SBUS)
   list(APPEND SRCS sbus_backend.c)
 endif()
 
-if(CONFIG_MODULES_RC_INPUT_BACKEND_CRSF)
+if(CONFIG_RC_INPUT_BACKEND_CRSF)
   list(APPEND SRCS crsf_backend.c)
 endif()
 
-if(CONFIG_MODULES_RC_INPUT_BACKEND_DRONECAN)
+if(CONFIG_RC_INPUT_BACKEND_DRONECAN)
   list(APPEND SRCS dronecan_backend.c)
 endif()
 

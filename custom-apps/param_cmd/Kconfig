@@ -1,0 +1,5 @@
+config PARAM_CMD
+	bool "Parameter mod from NSH"
+	default n
+	---help---
+		Modify and read parameters from the store

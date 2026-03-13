@@ -1,0 +1,68 @@
+config PARAM_STORE
+	bool "Flash-backed parameter store"
+	default n
+	depends on ARCH_HAVE_PROGMEM
+	---help---
+		Enables the param_store library, providing a ping-pong flash
+		parameter store with a heap-allocated RAM scratch buffer.
+
+		Parameters are stored in two equally-sized flash sectors. On
+		each save, the inactive sector is erased and written, then
+		becomes the new active sector. This guarantees the previous
+		parameter set survives a power loss during a write.
+
+		The user defines the parameter data structure. Only its size
+		is relevant to the library. Access is through lock()/unlock()
+		for RAM access and save()/reset() for flash persistence.
+
+if PARAM_STORE
+
+config PARAM_STORE_SECTOR_A_ADDR
+	hex "Base address of parameter sector A"
+	default 0x0800F800
+	---help---
+		Flash address of the first parameter sector.
+
+		Both sectors must be independently erasable — they must not
+		share an erase block with code or data sections.
+
+		STM32F103 64K: last two 1K pages are 0x0800F800 / 0x0800FC00.
+
+		Must be aligned to CONFIG_PARAM_STORE_SECTOR_SIZE and reserved
+		in the linker script to prevent the toolchain from placing code
+		or data here.
+
+config PARAM_STORE_SECTOR_B_ADDR
+	hex "Base address of parameter sector B"
+	default 0x0800FC00
+	---help---
+		Flash address of the second parameter sector.
+		Must be aligned to CONFIG_PARAM_STORE_SECTOR_SIZE and must not
+		overlap with sector A or any code/data section.
+
+config PARAM_STORE_SECTOR_SIZE
+	int "Flash sector (erase page) size in bytes"
+	default 1024
+	---help---
+		Must match the erase granularity of the target device:
+
+		  STM32F1 low/medium density      1024
+		  STM32F1 high density            2048
+		  STM32F4 sectors 0-3            16384
+		  STM32F4 sector 4              65536
+		  STM32F4 sectors 5-11         131072
+
+		Both sectors A and B must be this exact size. The maximum
+		parameter data payload is (PARAM_STORE_SECTOR_SIZE - 12).
+
+config PARAM_STORE_MAGIC
+	hex "Magic word written to each valid sector header"
+	default 0xDEADCAFE
+	---help---
+		A sector is considered valid only if it starts with this 32-bit
+		word. Change this value whenever the parameter struct is modified
+		in a backward-incompatible way — existing flash content with the
+		old magic will be treated as blank, triggering a first-boot
+		re-initialisation from defaults.
+
+endif # PARAM_STORE
